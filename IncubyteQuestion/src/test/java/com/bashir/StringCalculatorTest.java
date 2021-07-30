@@ -52,9 +52,19 @@ class StringCalculatorTest {
 	void testMultipleNumbers()
 	{
 		assertAll(
-				() -> assertEquals(140, stringCalculator.add("15,5,20,25,35,40"),"string containing multiple numbers should return its sum"),
-				() -> assertEquals(11, stringCalculator.add("1,1,1,1,1,1,1,1,1,1,1"),"string containing multiple numbers should return its sum"),
-				() -> assertEquals(2721, stringCalculator.add("395,55,792,817,645,12,5"),"string containing multiple numbers should return its sum"));
+		() -> assertEquals(140, stringCalculator.add("15,5,20,25,35,40"),"string containing multiple numbers should return its sum"),
+		() -> assertEquals(11, stringCalculator.add("1,1,1,1,1,1,1,1,1,1,1"),"string containing multiple numbers should return its sum"),
+		() -> assertEquals(2721, stringCalculator.add("395,55,792,817,645,12,5"),"string containing multiple numbers should return its sum"));
+	}
+	
+	@Test
+	@DisplayName("the add() method for strings containing new lines")
+	void testStringsWithNewLines()
+	{
+		assertAll(
+		() -> assertEquals(80, stringCalculator.add("20\n15\n25\n20"),"Strings containing new lines should return the sum of the numbers present in the string"),
+		() -> assertEquals(27, stringCalculator.add("1,2,3\n4,5,6\n1,2,3"),"Strings containing new lines should return the sum of the numbers present in the string"),
+		() -> assertEquals(12, stringCalculator.add("\n12\n"),"Strings containing new lines should return the sum of the numbers present in the string"));
 	}
 	
 
