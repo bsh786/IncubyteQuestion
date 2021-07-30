@@ -3,6 +3,7 @@ package com.bashir;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,6 +20,7 @@ class StringCalculatorTest {
 	
 	@Test
 	@DisplayName("the add() method for an empty String")
+//	@Disabled
 	void testEmptyString()
 	{
 	   int actual = stringCalculator.add("");
@@ -28,6 +30,7 @@ class StringCalculatorTest {
 	
 	@Test
 	@DisplayName("the add() method for string consisting of a single number")
+//	@Disabled
 	void testSingleNumber()
 	{
 		assertAll(
@@ -39,6 +42,7 @@ class StringCalculatorTest {
 	
 	@Test
 	@DisplayName("the add() method for string consisting of two numbers")
+//	@Disabled
 	void testTwoNumbers()
 	{
 		assertAll(
@@ -49,6 +53,7 @@ class StringCalculatorTest {
 	
 	@Test
 	@DisplayName("the add() method for string consisting of multiple numbers")
+ //	@Disabled
 	void testMultipleNumbers()
 	{
 		assertAll(
@@ -59,6 +64,7 @@ class StringCalculatorTest {
 	
 	@Test
 	@DisplayName("the add() method for strings containing new lines")
+ //	@Disabled
 	void testStringsWithNewLines()
 	{
 		assertAll(
@@ -72,9 +78,9 @@ class StringCalculatorTest {
 	void testWithDifferentDelimiters()
 	{
 		assertAll(
-		() -> assertEquals(80, stringCalculator.add("//@\n10@100@200@250"),"Strings containing user defined delimiters return the sum of the numbers present in the string"),
-		() -> assertEquals(27, stringCalculator.add("//#\n1#1#1\n1#1#1\n1#1#1"),"Strings containing user defined delimiters return the sum of the numbers present in the string"),
-		() -> assertEquals(12, stringCalculator.add("//*\n123*765*892\n432\n154*56*2"),"Strings containing user defined delimiters return the sum of the numbers present in the string"));
+		() -> assertEquals(560, stringCalculator.add("//@\n10@100@200@250"),"Strings containing user defined delimiters return the sum of the numbers present in the string"),
+		() -> assertEquals(9, stringCalculator.add("//#\n1#1#1\n1#1#1\n1#1#1"),"Strings containing user defined delimiters return the sum of the numbers present in the string"),
+		() -> assertEquals(2424, stringCalculator.add("//*\n123*765*892\n432\n154*56*2"),"Strings containing user defined delimiters return the sum of the numbers present in the string"));
 	}
 	
 
