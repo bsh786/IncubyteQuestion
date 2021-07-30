@@ -67,5 +67,15 @@ class StringCalculatorTest {
 		() -> assertEquals(12, stringCalculator.add("\n12\n"),"Strings containing new lines should return the sum of the numbers present in the string"));
 	}
 	
+	@Test
+	@DisplayName("the add() method for used defined delimiters")
+	void testWithDifferentDelimiters()
+	{
+		assertAll(
+		() -> assertEquals(80, stringCalculator.add("//@\n10@100@200@250"),"Strings containing user defined delimiters return the sum of the numbers present in the string"),
+		() -> assertEquals(27, stringCalculator.add("//#\n1#1#1\n1#1#1\n1#1#1"),"Strings containing user defined delimiters return the sum of the numbers present in the string"),
+		() -> assertEquals(12, stringCalculator.add("//*\n123*765*892\n432\n154*56*2"),"Strings containing user defined delimiters return the sum of the numbers present in the string"));
+	}
+	
 
 }
