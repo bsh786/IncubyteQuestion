@@ -47,5 +47,15 @@ class StringCalculatorTest {
 		() -> assertEquals(450, stringCalculator.add("395,55"),"sum of 395 and 55 is 450"));
 	}
 	
+	@Test
+	@DisplayName("the add() method for string consisting of multiple numbers")
+	void testMultipleNumbers()
+	{
+		assertAll(
+				() -> assertEquals(140, stringCalculator.add("15,5,20,25,35,40"),"string containing multiple numbers should return its sum"),
+				() -> assertEquals(11, stringCalculator.add("1,1,1,1,1,1,1,1,1,1,1"),"string containing multiple numbers should return its sum"),
+				() -> assertEquals(2721, stringCalculator.add("395,55,792,817,645,12,5"),"string containing multiple numbers should return its sum"));
+	}
+	
 
 }
