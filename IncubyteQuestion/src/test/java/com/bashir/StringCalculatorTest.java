@@ -119,5 +119,16 @@ class StringCalculatorTest {
 		assertEquals(expected,actual,"getCalledCount() method should return the number of times add() method is invoked");
 	}
 	
+	@Test
+	@DisplayName("the add() method for numbers greater than 1000")
+	void testNumbersGreaterThanThousand()
+	{
+		assertAll(
+		() -> assertEquals(0, stringCalculator.add("12000"),"Numbers greater than 1000 should be ignored"),
+		() -> assertEquals(5, stringCalculator.add("8000,5"),"Numbers greater than 1000 should be ignored"),
+		() -> assertEquals(2100, stringCalculator.add("5000,4000,500,400,1000,13564,6789,98773,200"),"Numbers greater than 1000 should be ignored"),
+		() -> assertEquals(1500, stringCalculator.add("//^\n2500^500^485334\n2444234^500\n500^343434^1001"),"Numbers greater than 1000 should be ignored"));
+	}
+	
 
 }
