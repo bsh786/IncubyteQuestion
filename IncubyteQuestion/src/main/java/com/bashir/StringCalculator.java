@@ -1,18 +1,21 @@
 package com.bashir;
 
+import java.util.List;
 
 public class StringCalculator {
 	
 
 	private int addInvokedCount = 0;
 	
-	public int add(String numbers) throws NegativeNumberException
+	public int add(String numbers) throws Exception
 	{
 		
 		addInvokedCount++;
 		
 		String defaultDelimiter = ",";
+		int noOfDelimiters = 1;
 		String negativeNumbers = "";
+		String delimiterPattern = "";
 		
 		if(numbers.equals("")) // Returning 0 for empty string
 		{
@@ -37,23 +40,51 @@ public class StringCalculator {
 			String changeDefaultDelimiter = numbers.substring(0,2);
 
 			if(changeDefaultDelimiter.equals("//"))
-			{
-				
+			{	
 			  if(numbers.contains("[") && numbers.contains("]"))
 			  {
+
+					int noOfStartBrackets = 0;
+					int noOfEndBrackets = 0;
+					
+					char[] numbersStringArray = numbers.toCharArray();
+					
+					for(int i=0;i<numbersStringArray.length;i++)
+					{
+						if(numbersStringArray[i]=='[')
+						{
+							noOfStartBrackets++;
+						}
+						else if(numbersStringArray[i]==']')
+						{
+							noOfEndBrackets++;
+						}
+					}
+					
+					if(noOfStartBrackets == noOfEndBrackets)
+					{
+						noOfDelimiters = noOfStartBrackets;
+					}
+					else {
+						throw new Exception("Invalid string");
+					}
+					
+				 for(int k=0;k<noOfDelimiters;k++)
+				 {	 
+				  // Single multicharacter delimiter code starts
 				  int startIndex = numbers.indexOf("[");
 				  int endIndex = numbers.indexOf("]");
 				  
 				  defaultDelimiter = numbers.substring(startIndex+1, endIndex);
 			      
-				  if(defaultDelimiter.contains("*")||defaultDelimiter.contains("+")||defaultDelimiter.contains("$")||defaultDelimiter.contains("^")||defaultDelimiter.contains("?"))
+				  if(defaultDelimiter.contains("*")||defaultDelimiter.contains("+")||defaultDelimiter.contains("$")||defaultDelimiter.contains("^")||defaultDelimiter.contains("?")||defaultDelimiter.contains("."))
 				  {
 					  char[] delimiterArray = defaultDelimiter.toCharArray();
 				      String newDelimiter = "";
 					  
 					  for(int i=0;i<delimiterArray.length;i++)
 					  {
-						  if(delimiterArray[i]=='*'||delimiterArray[i]=='+'||delimiterArray[i]=='$'||delimiterArray[i]=='^'||delimiterArray[i]=='?')
+						  if(delimiterArray[i]=='*'||delimiterArray[i]=='+'||delimiterArray[i]=='$'||delimiterArray[i]=='^'||delimiterArray[i]=='?'||delimiterArray[i]=='.')
 						  {
 							  newDelimiter = newDelimiter+"\\"+delimiterArray[i];
 						  }
@@ -61,20 +92,29 @@ public class StringCalculator {
 							  newDelimiter = newDelimiter+delimiterArray[i];
 						  }
 					  }
-					  
-					  defaultDelimiter = newDelimiter;
+				   
+					defaultDelimiter = newDelimiter;
 				  
 				  }
 				  
+				  if(k==0)
+				  {
+					  delimiterPattern = delimiterPattern+defaultDelimiter;
+				  }
+				  else {
+				  delimiterPattern = delimiterPattern+"|"+defaultDelimiter;
+				  }
+				  
 				  numbers = numbers.substring(endIndex+1);
-			      
-			  }
+			      //Single multicharacter delimiter code ends
+			   }
+			  }	 
 			  else {
 				
 			// Code for single one digit delimiter starts	
 				defaultDelimiter = numbers.substring(2,3);
 				
-				if(defaultDelimiter.equals("*") || defaultDelimiter.equals("+") || defaultDelimiter.equals("$") || defaultDelimiter.equals("^") || defaultDelimiter.equals("?"))
+				if(defaultDelimiter.equals("*") || defaultDelimiter.equals("+") || defaultDelimiter.equals("$") || defaultDelimiter.equals("^") || defaultDelimiter.equals("?") || defaultDelimiter.equals("."))
 				{
 				  defaultDelimiter = "\\"+defaultDelimiter;	
 				}
@@ -86,8 +126,17 @@ public class StringCalculator {
 			}
 			int sum = 0;
 			
-			numbers.trim();
-			String[] numbersArray = numbers.split(defaultDelimiter+"|\\r?\\n");
+			numbers = numbers.trim();
+			String[] numbersArray = null;
+			if(noOfDelimiters>1)
+			{
+			   numbersArray = numbers.split(delimiterPattern+"|\\r?\\n");	
+			}
+			else {
+				numbersArray = numbers.split(defaultDelimiter+"|\\r?\\n");
+			}
+			
+			
 			for(String numberAsString:numbersArray)
 			{
 			   if(numberAsString.equals(""))
@@ -102,6 +151,7 @@ public class StringCalculator {
 			   {
 				   number=0;
 			   }
+			   
 			   sum+=number;   
 			   }
 			}

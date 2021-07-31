@@ -26,7 +26,7 @@ class StringCalculatorTest {
 	@DisplayName("the add() method for an empty String")
 	@Order(1)
 //	@Disabled
-	void testEmptyString() throws NegativeNumberException
+	void testEmptyString() throws Exception
 	{
 	   int actual = stringCalculator.add("");
 	   int expected = 0;
@@ -85,6 +85,7 @@ class StringCalculatorTest {
 	@Test
 	@DisplayName("the add() method for used defined delimiters")
 	@Order(6)
+//	@Disabled
 	void testWithDifferentDelimiters()
 	{
 		assertAll(
@@ -96,6 +97,7 @@ class StringCalculatorTest {
 	@Test
 	@DisplayName("the add() method for negative numbers")
 	@Order(7)
+//	@Disabled
 	void testNegativeNumbers()
 	{
 		assertAll(
@@ -112,6 +114,7 @@ class StringCalculatorTest {
 	@Test
 	@DisplayName("the getCalledCount() method to get count of the number of times add method is invoked")
 	@Order(8)
+//	@Disabled
 	void testAddCount()
 	{
 		int actual = stringCalculator.getCalledCount();
@@ -121,6 +124,7 @@ class StringCalculatorTest {
 	
 	@Test
 	@DisplayName("the add() method for numbers greater than 1000")
+//	@Disabled
 	void testNumbersGreaterThanThousand()
 	{
 		assertAll(
@@ -132,6 +136,7 @@ class StringCalculatorTest {
 	
 	@Test
 	@DisplayName("the add() method for delimiters having length more than one")
+//	@Disabled
 	void testDelimitersWithLengthGreaterThanOne()
 	{
         assertAll(
@@ -146,9 +151,10 @@ class StringCalculatorTest {
 	void testWithMultipleDelimiters()
 	{
 	   assertAll(
-	   () -> assertEquals(438, stringCalculator.add("//[x][y]\n23x43x56y76x82y93y24y41x1500"), "Strings havingultiple delimiters should return the correct sum of the numbers"),
-	   () -> assertEquals(13, stringCalculator.add("//[*][@][$]\n1*1\n1@1\n1$1\n1*1@1\n1*1$1\n1@1$1\n1*1$1@1"), "Strings havingultiple delimiters should return the correct sum of the numbers"),
-	   () -> assertEquals(1460, stringCalculator.add("//[+][!][i][#][.]\n345+124i543!75\n99#23!1500.99i76#54.22"), "Strings havingultiple delimiters should return the correct sum of the numbers"));	
+	   () -> assertEquals(438, stringCalculator.add("//[x][y]\n23x43x56y76x82y93y24y41x1500"), "Strings having multiple delimiters should return the correct sum of the numbers"),
+	   () -> assertEquals(19, stringCalculator.add("//[*][@][$]\n1*1\n1@1\n1$1\n1*1@1\n1*1$1\n1@1$1\n1*1$1@1"), "Strings having multiple delimiters should return the correct sum of the numbers"),
+	   () -> assertEquals(1460, stringCalculator.add("//[+][!][.][#][i]\n345+124.543!75\n99#23!1500i99.76#54i22"), "Strings having multiple delimiters should return the correct sum of the numbers"));
+	   
 	}
 	
 
