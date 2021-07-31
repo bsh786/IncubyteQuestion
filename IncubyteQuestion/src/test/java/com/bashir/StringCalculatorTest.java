@@ -157,6 +157,15 @@ class StringCalculatorTest {
 	   
 	}
 	
+	@Test
+	@DisplayName("the add() method for multiple delimiters with length greater than one")
+	void testWithMultipleDelimitersHavingLengthGreaterThanOne()
+	{
+		assertAll(
+		() -> assertEquals(80, stringCalculator.add("//[xxx][**][!]\n20xxx1001xxx10**20**15!5!10")),
+		() -> assertEquals(12, stringCalculator.add("//[!!!!!][......][''']\n1!!!!!1......1'''1\n2......2!!!!!2'''2")),
+		() -> assertEquals(1472, stringCalculator.add("//[***][++++][@]\n123@567+++++233\n422***127")));
+	}
 
 	
 
