@@ -98,5 +98,14 @@ class StringCalculatorTest {
 		
 	}
 	
+	@Test
+	@DisplayName("the getCalledCount() method to get count of the number of times add method is invoked")
+	void testAddCount()
+	{
+		int actual = stringCalculator.getCalledCount();
+		int expected = 22;
+		assertEquals(expected,actual,"getCalledCount() method should return the number of times add() method is invoked");
+	}
+	
 
 }

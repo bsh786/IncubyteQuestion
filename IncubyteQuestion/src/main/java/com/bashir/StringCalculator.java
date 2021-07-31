@@ -2,6 +2,7 @@ package com.bashir;
 
 
 public class StringCalculator {
+	
 
 	public int add(String numbers) throws NegativeNumberException
 	{
@@ -64,8 +65,11 @@ public class StringCalculator {
 			}
 			return sum;
 		}
-		
-		
-	}
 	
+	}
+
+	public int getCalledCount()
+	{
+		return 0;
+	}
 }
