@@ -130,6 +130,16 @@ class StringCalculatorTest {
 		() -> assertEquals(1500, stringCalculator.add("//^\n2500^500^485334\n2444234^500\n500^343434^1001"),"Numbers greater than 1000 should be ignored"));
 	}
 	
+	@Test
+	@DisplayName("the add() method for delimiters having length more than one")
+	void testDelimitersWithLengthGreaterThanOne()
+	{
+        assertAll(
+        () -> assertEquals(200, stringCalculator.add("//[***]\n25***25***50\n30***40\n30")),
+        () -> assertEquals(8, stringCalculator.add("//[xxxxx]\n1xxxxx1xxxxx1\n1\n1xxxxx1xxxxx1xxxxx1")),
+        () -> assertEquals(1131,stringCalculator.add("//[##]\324##250##2423##12##545")));		
+	}
+	
 
 	
 
