@@ -135,9 +135,20 @@ class StringCalculatorTest {
 	void testDelimitersWithLengthGreaterThanOne()
 	{
         assertAll(
-        () -> assertEquals(200, stringCalculator.add("//[***]\n25***25***50\n30***40\n30")),
-        () -> assertEquals(8, stringCalculator.add("//[xxxxx]\n1xxxxx1xxxxx1\n1\n1xxxxx1xxxxx1xxxxx1")),
-        () -> assertEquals(1131,stringCalculator.add("//[##]\n324##250##2423##12##545")));		
+        () -> assertEquals(200, stringCalculator.add("//[***]\n25***25***50\n30***40\n30"),"Strings containg delimiters having length greater than one should return the sum of the numbers"),
+        () -> assertEquals(8, stringCalculator.add("//[xxxxx]\n1xxxxx1xxxxx1\n1\n1xxxxx1xxxxx1xxxxx1"), "Strings containg delimiters having length greater than one should return the sum of the numbers"),
+        () -> assertEquals(1131,stringCalculator.add("//[##]\n324##250##2423##12##545"), "Strings containg delimiters having length greater than one should return the sum of the numbers"));		
+	}
+	
+	
+	@Test
+	@DisplayName("the add() method for multiple delimiters")
+	void testWithMultipleDelimiters()
+	{
+	   assertAll(
+	   () -> assertEquals(438, stringCalculator.add("//[x][y]\n23x43x56y76x82y93y24y41x1500"), "Strings havingultiple delimiters should return the correct sum of the numbers"),
+	   () -> assertEquals(13, stringCalculator.add("//[*][@][$]\n1*1\n1@1\n1$1\n1*1@1\n1*1$1\n1@1$1\n1*1$1@1"), "Strings havingultiple delimiters should return the correct sum of the numbers"),
+	   () -> assertEquals(1460, stringCalculator.add("//[+][!][i][#][.]\n345+124i543!75\n99#23!1500.99i76#54.22"), "Strings havingultiple delimiters should return the correct sum of the numbers"));	
 	}
 	
 
