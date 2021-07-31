@@ -26,6 +26,10 @@ public class StringCalculator {
 			{
 				throw new NegativeNumberException("Negatives not allowed : "+number);
 			}
+			if(number>1000)
+			{
+				number = 0;
+			}
 			return number;
 		}
 		else {  // String consists multiple numbers
@@ -57,6 +61,10 @@ public class StringCalculator {
 			   if(number<0)
 			   {
 				   negativeNumbers = negativeNumbers+String.valueOf(number)+" ";
+			   }
+			   if(number>1000)
+			   {
+				   number=0;
 			   }
 			   sum+=number;   
 			   }
