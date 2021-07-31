@@ -21,7 +21,7 @@ class StringCalculatorTest {
 	@Test
 	@DisplayName("the add() method for an empty String")
 //	@Disabled
-	void testEmptyString()
+	void testEmptyString() throws NegativeNumberException
 	{
 	   int actual = stringCalculator.add("");
 	   int expected = 0;
@@ -94,6 +94,7 @@ class StringCalculatorTest {
 		() -> assertThrows(NegativeNumberException.class, () -> stringCalculator.add("//&\n-20&10&-30&-40&45&-50&-55"), "Exception should be thrown when a negative number is passed"),
 		() -> assertThrows(NegativeNumberException.class, () -> stringCalculator.add("30,35\n-50"), "Exception should be thrown when a negative number is passed"),
 		() -> assertThrows(NegativeNumberException.class, () -> stringCalculator.add("//+\n25+26+27\n-10+-20+-30\n12+20+-40"), "Exception should be thrown when a negative number is passed"));
+		
 		
 	}
 	

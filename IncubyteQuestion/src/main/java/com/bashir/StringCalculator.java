@@ -3,10 +3,11 @@ package com.bashir;
 
 public class StringCalculator {
 
-	public int add(String numbers)
+	public int add(String numbers) throws NegativeNumberException
 	{
 		
 		String defaultDelimiter = ",";
+		String negativeNumbers = "";
 		
 		if(numbers.equals("")) // Returning 0 for empty string
 		{
@@ -16,6 +17,10 @@ public class StringCalculator {
 		if(!numbers.contains(defaultDelimiter) && !(numbers.contains("\n")))  // String consists single number 
 		{
 			int number =  Integer.parseInt(numbers);
+			if(number<0)
+			{
+				throw new NegativeNumberException("Negatives not allowed : "+number);
+			}
 			return number;
 		}
 		else {  // String consists multiple numbers
@@ -44,8 +49,18 @@ public class StringCalculator {
 			   {}
 			   else {
 			   int number = Integer.parseInt(numberAsString);
+			   if(number<0)
+			   {
+				   negativeNumbers = negativeNumbers+String.valueOf(number)+" ";
+			   }
 			   sum+=number;   
 			   }
+			}
+			
+			if(negativeNumbers.length()>0)
+			{
+				String exceptionMessage = "Negatives not allowed : "+negativeNumbers;
+				throw new NegativeNumberException(exceptionMessage);
 			}
 			return sum;
 		}
