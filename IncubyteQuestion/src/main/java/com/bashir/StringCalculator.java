@@ -4,8 +4,12 @@ package com.bashir;
 public class StringCalculator {
 	
 
+	private int addInvokedCount = 0;
+	
 	public int add(String numbers) throws NegativeNumberException
 	{
+		
+		addInvokedCount++;
 		
 		String defaultDelimiter = ",";
 		String negativeNumbers = "";
@@ -70,6 +74,6 @@ public class StringCalculator {
 
 	public int getCalledCount()
 	{
-		return 0;
+		return addInvokedCount;
 	}
 }

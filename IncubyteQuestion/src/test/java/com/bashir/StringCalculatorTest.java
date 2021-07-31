@@ -5,9 +5,13 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 
 @DisplayName("In class StringCalculator testing")
+@TestMethodOrder(OrderAnnotation.class)
 class StringCalculatorTest {
 
 	private static StringCalculator stringCalculator;
@@ -20,6 +24,7 @@ class StringCalculatorTest {
 	
 	@Test
 	@DisplayName("the add() method for an empty String")
+	@Order(1)
 //	@Disabled
 	void testEmptyString() throws NegativeNumberException
 	{
@@ -30,6 +35,7 @@ class StringCalculatorTest {
 	
 	@Test
 	@DisplayName("the add() method for string consisting of a single number")
+    @Order(2)
 //	@Disabled
 	void testSingleNumber()
 	{
@@ -42,6 +48,7 @@ class StringCalculatorTest {
 	
 	@Test
 	@DisplayName("the add() method for string consisting of two numbers")
+    @Order(3)
 //	@Disabled
 	void testTwoNumbers()
 	{
@@ -53,7 +60,8 @@ class StringCalculatorTest {
 	
 	@Test
 	@DisplayName("the add() method for string consisting of multiple numbers")
- //	@Disabled
+    @Order(4) 
+//	@Disabled
 	void testMultipleNumbers()
 	{
 		assertAll(
@@ -64,7 +72,8 @@ class StringCalculatorTest {
 	
 	@Test
 	@DisplayName("the add() method for strings containing new lines")
- //	@Disabled
+    @Order(5) 
+//	@Disabled
 	void testStringsWithNewLines()
 	{
 		assertAll(
@@ -75,6 +84,7 @@ class StringCalculatorTest {
 	
 	@Test
 	@DisplayName("the add() method for used defined delimiters")
+	@Order(6)
 	void testWithDifferentDelimiters()
 	{
 		assertAll(
@@ -85,6 +95,7 @@ class StringCalculatorTest {
 	
 	@Test
 	@DisplayName("the add() method for negative numbers")
+	@Order(7)
 	void testNegativeNumbers()
 	{
 		assertAll(
@@ -100,6 +111,7 @@ class StringCalculatorTest {
 	
 	@Test
 	@DisplayName("the getCalledCount() method to get count of the number of times add method is invoked")
+	@Order(8)
 	void testAddCount()
 	{
 		int actual = stringCalculator.getCalledCount();
