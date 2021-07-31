@@ -83,5 +83,19 @@ class StringCalculatorTest {
 		() -> assertEquals(2424, stringCalculator.add("//*\n123*765*892\n432\n154*56*2"),"Strings containing user defined delimiters return the sum of the numbers present in the string"));
 	}
 	
+	@Test
+	@DisplayName("the add() method for negative numbers")
+	void testNegativeNumbers()
+	{
+		assertAll(
+		() -> assertThrows(NegativeNumberException.class, () -> stringCalculator.add("-25"), "Exception should be thrown when a negative number is passed"),
+		() -> assertThrows(NegativeNumberException.class, () -> stringCalculator.add("-15,25"), "Exception should be thrown when a negative number is passed"),
+		() -> assertThrows(NegativeNumberException.class, () -> stringCalculator.add("20,25,30,-40,50,-60,-70,-75,-80,-85"), "Exception should be thrown when a negative number is passed"),
+		() -> assertThrows(NegativeNumberException.class, () -> stringCalculator.add("//&\n-20&10&-30&-40&45&-50&-55"), "Exception should be thrown when a negative number is passed"),
+		() -> assertThrows(NegativeNumberException.class, () -> stringCalculator.add("30,35\n-50"), "Exception should be thrown when a negative number is passed"),
+		() -> assertThrows(NegativeNumberException.class, () -> stringCalculator.add("//+\n25+26+27\n-10+-20+-30\n12+20+-40"), "Exception should be thrown when a negative number is passed"));
+		
+	}
+	
 
 }
