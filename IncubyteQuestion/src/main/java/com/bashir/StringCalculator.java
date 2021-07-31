@@ -38,6 +38,40 @@ public class StringCalculator {
 
 			if(changeDefaultDelimiter.equals("//"))
 			{
+				
+			  if(numbers.contains("[") && numbers.contains("]"))
+			  {
+				  int startIndex = numbers.indexOf("[");
+				  int endIndex = numbers.indexOf("]");
+				  
+				  defaultDelimiter = numbers.substring(startIndex+1, endIndex);
+			      
+				  if(defaultDelimiter.contains("*")||defaultDelimiter.contains("+")||defaultDelimiter.contains("$")||defaultDelimiter.contains("^")||defaultDelimiter.contains("?"))
+				  {
+					  char[] delimiterArray = defaultDelimiter.toCharArray();
+				      String newDelimiter = "";
+					  
+					  for(int i=0;i<delimiterArray.length;i++)
+					  {
+						  if(delimiterArray[i]=='*'||delimiterArray[i]=='+'||delimiterArray[i]=='$'||delimiterArray[i]=='^'||delimiterArray[i]=='?')
+						  {
+							  newDelimiter = newDelimiter+"\\"+delimiterArray[i];
+						  }
+						  else {
+							  newDelimiter = newDelimiter+delimiterArray[i];
+						  }
+					  }
+					  
+					  defaultDelimiter = newDelimiter;
+				  
+				  }
+				  
+				  numbers = numbers.substring(endIndex+1);
+			      
+			  }
+			  else {
+				
+			// Code for single one digit delimiter starts	
 				defaultDelimiter = numbers.substring(2,3);
 				
 				if(defaultDelimiter.equals("*") || defaultDelimiter.equals("+") || defaultDelimiter.equals("$") || defaultDelimiter.equals("^") || defaultDelimiter.equals("?"))
@@ -46,8 +80,10 @@ public class StringCalculator {
 				}
 				
 				numbers = numbers.substring(3);
+				
+			// Code for single one digit delimiter ends	
 			}	
-			
+			}
 			int sum = 0;
 			
 			numbers.trim();

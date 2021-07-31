@@ -137,7 +137,7 @@ class StringCalculatorTest {
         assertAll(
         () -> assertEquals(200, stringCalculator.add("//[***]\n25***25***50\n30***40\n30")),
         () -> assertEquals(8, stringCalculator.add("//[xxxxx]\n1xxxxx1xxxxx1\n1\n1xxxxx1xxxxx1xxxxx1")),
-        () -> assertEquals(1131,stringCalculator.add("//[##]\324##250##2423##12##545")));		
+        () -> assertEquals(1131,stringCalculator.add("//[##]\n324##250##2423##12##545")));		
 	}
 	
 
